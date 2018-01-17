@@ -47,6 +47,12 @@ var flipCard = function(){
 	console.log(cards[cardID].suit);
 }
 
+var empty = function() {
+	cardsInPlay = [];
+	document.getElementById('game-board').innerHTML= "";
+	createBoard();
+}
+
 var createBoard = function() {
 	for (var i=0; i<cards.length; i++){
 		var cardElement = document.createElement('img');
@@ -55,6 +61,7 @@ var createBoard = function() {
 		cardElement.addEventListener('click', flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
 	}
+	var reset=document.getElementById('reset').addEventListener('click', empty);
 }
 
 createBoard();
