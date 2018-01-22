@@ -24,6 +24,16 @@ var cards = [
 var cardsInPlay = [];
 var score = 0;
 
+function shuffle(a) {
+	var j, x, i;
+	for (i = a.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		x = a[i];
+		a[i] = a[j];
+		a[j] = x;
+  }
+}
+
 var checkForMatch = function(){
 	if (cardsInPlay[0] === cardsInPlay[1]){
 		alert("You found a match!");
@@ -38,7 +48,6 @@ var checkForMatch = function(){
 var flipCard = function(){
 	var cardID=this.getAttribute('data-id');
 	cardsInPlay.push(cards[cardID].rank);
-
 
 	this.setAttribute('src',cards[cardID].cardImage);
 
@@ -61,6 +70,7 @@ var showScore = function(){
 }
 
 var createBoard = function() {
+	shuffle(cards);
 	for (var i=0; i<cards.length; i++){
 		var cardElement = document.createElement('img');
 		cardElement.setAttribute('src', 'images/back.png');
